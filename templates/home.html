@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="mainidea-panel" class="panel left">
+        <h4> What if there existed a company that was... </h4>
+        <div id="idea-lineholder">
+          <div class="upvote" objectid="{{main_idea._id}}"></div>
+          <div class="votes {{main_idea._id}}"> {{main_idea.votes}} </div>
+          <div class="company">{{main_idea.company}}</div>
+            for 
+          <div class="industry">{{main_idea.industry}}</div> 
+        </div>
+        <div id="newidea-button" class="btn">New Idea!</div>
+
+<!--
+        <form action="{{url_for('upvote', idea_id=main_idea._id)}}" method="POST">
+       <input type=submit value="^" /> 
+         <input id="newidea-button" class="btn" type=button value="New Idea!" onClick="window.location.reload()"> -->
+       </form>
+    </div> 
+
+  <div id="add-panel" class="panel left">
+    <div id="add-company" class="line tab">
+        <input id="add-company-text" class="textbox" name=company type=text value="add company"/>
+        <div class="btn add-button">+</div>
+        <div class="confirm-container">
+            <div class="confirm"></div>
+        </div>
+    </div>
+    <div id="add-industry" class="line tab">
+        <input id="add-industry-text" class="textbox" name=industry type=text value="add industry"/>
+        <div class="btn add-button">+</div>
+        <div class="confirm-container">
+            <div class="confirm"></div>
+        </div>
+    </div>
+  </div>
+
+  <div id="aboutus-panel" class="panel left">
+    <div id="aboutus-text"> This is a *fun* way to get ideas for startups, semi-inspired by <a href="http://www.youtube.com/watch?v=BR8zFANeBGQ"> this Youtube video</a>.</div>
+
+  </div>
+
+  <div id="leaderboard-panel" class="panel right">
+    <div id="leaderboard-title"> Top Voted Ideas </div>
+    <div class="leaderboard-itemholder">
+        {% for idea in top_ideas %}
+        <div class="idea">
+            <span class="votes {{idea._id}}">{{idea.votes}}</span> {{idea.company}} for {{idea.industry}} </br>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" language="javascript" src="{{url_for('static', filename='bestidea.js')}}"></script>
+{% endblock %}
+
+
+
